@@ -1,16 +1,19 @@
-package com.spring.core.chap01;
+package com.spring.core.chap02;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 //@NoArgsConstructor // 기본생성자
-
+@Component("wr") // hotelmanager에 객체생성을 맡김
 public class WesternRestaurant implements Restaurant {
 
     // 의존 객체
     private final Chef chef;
     private FrenchCourse course = new FrenchCourse();
 
-    public WesternRestaurant(Chef chef) {
+    @Autowired  // 스프링에 빈으로 등록된 의존객체를 알아서 넣어주는 기능
+    public WesternRestaurant(@Qualifier("jc") Chef chef) {
         this.chef = chef;
     }
 
